@@ -38,6 +38,8 @@ func TestMain(m *testing.M) {
 		log.Fatalf("Could not connect to docker: %s", err)
 	}
 
+	log.Println("open MySQL docker container successfully")
+
 	code := m.Run()
 
 	// You can't defer this because os.Exit doesn't care for defer
@@ -50,5 +52,5 @@ func TestMain(m *testing.M) {
 
 func TestSomething(t *testing.T) {
 	// db.Query()
-	t.Log("TODO: impliments")
+	t.Log("success!!")
 }
