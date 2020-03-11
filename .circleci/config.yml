@@ -24,4 +24,6 @@ workflows:
   test:
     jobs:
       - test:
-          context: test
+          filters:
+            branches:
+              only: /.*/
