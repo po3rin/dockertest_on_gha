@@ -1,0 +1,53 @@
+version: 2
+jobs:
+  test:
+    working_directory: /home/circleci/dockertest_on_gha
+    machine: true
+    steps:
+    - checkout
+    - run:
+        name: Install Go
+        command: |
+          wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz
+          sudo tar -C /usr/local -xzf go1.13.5.linux-amd64.tar.gz
+          export PATH=$PATH:/usr/local/go/bin
+          go version
+    - run:
+        name: test
+        command: |
+          go test ./... -v
+workflows:
+  version: 2
+  test:
+    jobs:
+    - test:
+        context: test
+
+# Original config.yml file:
+# version: 2.1
+# jobs:
+#   test:
+#     working_directory: /home/circleci/dockertest_on_gha
+#     machine: true
+#     steps:
+#       - checkout
+# 
+#       - run:
+#           name: Install Go
+#           command: |
+#               wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz
+#               sudo tar -C /usr/local -xzf go1.13.5.linux-amd64.tar.gz
+#               export PATH=$PATH:/usr/local/go/bin
+#               go version
+# 
+#       - run:
+#           name: test
+#           command: |
+#               go test ./... -v
+# 
+# workflows:
+#   version: 2.1
+#   test:
+#     jobs:
+#       - test:
+#           context: test
