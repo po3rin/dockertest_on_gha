@@ -39,6 +39,7 @@ func TestMain(m *testing.M) {
 	}
 
 	log.Println("open MySQL docker container successfully")
+	defer db.Close()
 
 	code := m.Run()
 
@@ -52,5 +53,4 @@ func TestMain(m *testing.M) {
 
 func TestSomething(t *testing.T) {
 	// db.Query()
-	t.Log("success!!")
 }
